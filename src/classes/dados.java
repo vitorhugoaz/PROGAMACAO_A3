@@ -1,6 +1,12 @@
 package classes;
 
-public class dados {
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
+public final class dados {
 
     private final int maxUsuarios = 10;
     private final int maxProdutos = 25;
@@ -10,19 +16,7 @@ public class dados {
     private int contadorProdutos = 0;
 
     public dados() {
-	usuario meuUsuario;
-
-	meuUsuario = new usuario("hugo", "Vitor Hugo", "Nogueira de Azevedo", "1", 1);
-	meusUsuarios[contadorUsuarios] = meuUsuario;
-	contadorUsuarios++;
-
-	meuUsuario = new usuario("joao", "João", "Barbosa Santos ", "1", 2);
-	meusUsuarios[contadorUsuarios] = meuUsuario;
-	contadorUsuarios++;
-
-	meuUsuario = new usuario("higor", "Higor", "C", "1", 1);
-	meusUsuarios[contadorUsuarios] = meuUsuario;
-	contadorUsuarios++;
+	VoltarUsuarios();
 
 	produtos meuProduto;
 	meuProduto = new produtos("001", "Arroz", "Porção 5Kg ", 21);
@@ -162,5 +156,113 @@ public class dados {
 	return "Produto deletado com sucesso!";
 
     }
-
+    public void salvar(){
+        SalvarUsuario();
+        SalvarProduto();
+    }
+    public void SalvarUsuario(){
+        FileWriter fw = null;  
+        PrintWriter pw = null;
+        try {
+            fw = new FileWriter("Data/usuarios.txt");
+            pw = new PrintWriter(fw);
+            
+            for(int i = 0; i < contadorUsuarios; i++){
+                
+                pw.println(meusUsuarios[i].toString());
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            
+        }finally{
+            try {
+                if (fw != null){
+                    fw.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+    }
+        public void SalvarProduto(){
+        FileWriter fw = null;  
+        PrintWriter pw = null;
+        try {
+            fw = new FileWriter("Data/produtos.txt");
+            pw = new PrintWriter(fw);
+            
+            for(int i = 0; i < contadorProdutos; i++){
+                
+                pw.println(meusProdutos[i].toString());
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            
+        }finally{
+            try {
+                if (fw != null){
+                    fw.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+    }
+        public void VoltarUsuarios(){
+            File arquivo = null;
+            FileReader fr = null;
+            BufferedReader br = null;
+            
+            try {
+                arquivo = new File("Data/usuarios.txt");
+                fr = new FileReader(arquivo);
+                br = new BufferedReader(fr);
+                
+                int pos;
+                String aux;
+                String linha;
+                String idUsuario;
+                String nome;
+                String sobrenome;
+                String senha;
+                int perfil;
+                
+                while ((linha=br.readLine())!=null){
+                    pos = linha.indexOf('|');
+                    aux = linha.substring(0,pos);
+                    idUsuario = aux;
+                    linha = linha.substring(pos +1);
+                    
+                    pos = linha.indexOf('|');
+                    aux = linha.substring(0,pos);
+                    nome = aux;
+                    linha = linha.substring(pos +1);
+                    
+                    pos = linha.indexOf('|');
+                    aux = linha.substring(0,pos);
+                    sobrenome = aux;
+                    linha = linha.substring(pos +1);
+                    
+                    pos = linha.indexOf('|');
+                    aux = linha.substring(0,pos);
+                    senha = aux;
+                    linha = linha.substring(pos +1);
+                    perfil = new Integer(linha);
+                    
+                    usuario meuUsuario = new usuario(idUsuario, nome, sobrenome, senha, perfil);
+                    meusUsuarios[contadorUsuarios] = meuUsuario;
+                    contadorUsuarios++;
+                }  
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }finally{
+                try {
+                    if(fr != null){
+                        fr.close();
+                    }
+                } catch (Exception e2) {
+                     e2.printStackTrace();
+                }
+            }
+        }
 }

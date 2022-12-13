@@ -1,5 +1,6 @@
 package formularios;
 
+import classes.background;
 import classes.dados;
 
     public class frmprincipal extends javax.swing.JFrame {
@@ -18,7 +19,7 @@ import classes.dados;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dpnDesktop = new javax.swing.JDesktopPane();
+        dpnDesktop = new background();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArquivo = new javax.swing.JMenu();
         MenuArquivoCliente = new javax.swing.JMenuItem();
@@ -37,6 +38,11 @@ import classes.dados;
         MenuAjudaAjuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         dpnDesktop.setForeground(new java.awt.Color(153, 153, 153));
 
@@ -44,11 +50,11 @@ import classes.dados;
         dpnDesktop.setLayout(dpnDesktopLayout);
         dpnDesktopLayout.setHorizontalGroup(
             dpnDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 799, Short.MAX_VALUE)
+            .addGap(0, 1386, Short.MAX_VALUE)
         );
         dpnDesktopLayout.setVerticalGroup(
             dpnDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 438, Short.MAX_VALUE)
+            .addGap(0, 502, Short.MAX_VALUE)
         );
 
         MenuArquivo.setBackground(new java.awt.Color(0, 0, 0));
@@ -101,6 +107,11 @@ import classes.dados;
         MenuArquivoSair.setForeground(new java.awt.Color(0, 0, 0));
         MenuArquivoSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sairsair.png"))); // NOI18N
         MenuArquivoSair.setText("Sair");
+        MenuArquivoSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuArquivoSairActionPerformed(evt);
+            }
+        });
         MenuArquivo.add(MenuArquivoSair);
 
         jMenuBar1.add(MenuArquivo);
@@ -151,7 +162,9 @@ import classes.dados;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dpnDesktop)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(dpnDesktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,6 +195,15 @@ import classes.dados;
         dpnDesktop.add(meusprodutos);
         meusprodutos.show();
     }//GEN-LAST:event_MenuArquivoProdutosActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ((background)dpnDesktop).setImage("/imagens/background.jpg");
+    }//GEN-LAST:event_formWindowOpened
+
+    private void MenuArquivoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuArquivoSairActionPerformed
+        msdados.salvar();
+        System.exit(0);
+    }//GEN-LAST:event_MenuArquivoSairActionPerformed
 
     /**
      * @param args the command line arguments

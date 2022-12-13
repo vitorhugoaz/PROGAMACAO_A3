@@ -46,4 +46,11 @@ public class produtos {
     public void setPreco(int preco) {
         this.preco = preco;
     }
+    @Override
+    public String toString(){
+        return idProduto +"|"
+             + Produto +"|"
+             + preco +"|"
+             + Descricao;      
+    }
 }

@@ -56,13 +56,13 @@ public class usuario {
     public void setPerfil(int perfil) {
         this.perfil = perfil;
     }
-
-    void getSenha(String senha) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    Object getidUsuario() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Override
+    public String toString(){
+        return idUsuario +"|"
+             + nome +"|"
+             + sobrenome  +"|"
+             + senha +"|"
+             + perfil;
     }
     
     

@@ -5,10 +5,6 @@ import classes.usuario;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Hugo
- */
                 public class frmusuarios extends javax.swing.JInternalFrame {
                 private dados msdados;
                 private int usuarioAtual = 0;
